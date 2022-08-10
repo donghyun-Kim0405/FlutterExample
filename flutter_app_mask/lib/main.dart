@@ -1,9 +1,10 @@
 import 'dart:convert';
-
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_mask/model/Store.dart';
 import 'package:http/http.dart' as http;
+
+
 void main() {
   runApp(const MyApp());
 }
@@ -94,12 +95,47 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   Widget? _buildRemainStatWidget(Store store) {
+    var remainStatus = "판매중지";
+    var description = "판매중지";
+    var color = Colors.black;
+
+    switch(store.remainStat) {
+      case "plenty":
+        remainStatus = "충분";
+        description = "판매중지";
+        color = Colors.green;
+        break;
+      case "some":
+        remainStatus = "보통";
+        description = "30~100";
+        color = Colors.yellow;
+        break;
+      case "plenty":
+        remainStatus = "부족";
+        description = "2~30";
+        color = Colors.red;
+        break;
+      case "empty":
+        remainStatus ="소진임박";
+        description = "1개이하";
+        color = Colors.grey;
+        break;
+
+    }
+
+
     return Column(
       children: <Widget>[
-        Text(store.remainStat ?? '매진'),
-        
+        Text(
+          remainStatus,
+          style: TextStyle(color: color, fontWeight: FontWeight.bold),
+        ),
+        Text(
+          description,
+          style: TextStyle(color: color),
+        )
       ],
-    )
+    );
   }
 
   Widget? loadingWidget(){
@@ -115,5 +151,3 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
 }
-
-
