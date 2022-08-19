@@ -1,6 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:real_time_random_chat/sign/signup/widget/gender_select_checkbox.dart';
+
+enum Gender{
+  MALE, FEMALE
+}
 
 class SignUpUserInfo extends StatefulWidget {
   const SignUpUserInfo({Key? key}) : super(key: key);
@@ -11,6 +16,11 @@ class SignUpUserInfo extends StatefulWidget {
 
 
 class _SignUpUserInfoState extends State<SignUpUserInfo> {
+
+  var _isChecked = false;
+  Gender _gender = Gender.MALE;
+  GenderSelectCheckbox genderSelectCheckbox = GenderSelectCheckbox();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -101,10 +111,18 @@ class _SignUpUserInfoState extends State<SignUpUserInfo> {
                 Container(
                   alignment: Alignment.centerLeft,
                   margin: EdgeInsets.only(left: 16, top: 16),
-                  child: Text("성별", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                  child: genderSelectCheckbox
                 ),
 
 
+                Container(
+                  child: TextButton(
+                    child: Text("가입하기", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    onPressed: (){
+                      print(genderSelectCheckbox.gender);
+                    },
+                  ),
+                )
               ],
             ),
           ),
