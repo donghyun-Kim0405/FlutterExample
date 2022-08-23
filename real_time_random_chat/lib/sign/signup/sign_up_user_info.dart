@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:real_time_random_chat/sign/signup/widget/birth_date_picker.dart';
 import 'package:real_time_random_chat/sign/signup/widget/gender_select_checkbox.dart';
 
 enum Gender{
@@ -13,7 +14,6 @@ class SignUpUserInfo extends StatefulWidget {
   @override
   State<SignUpUserInfo> createState() => _SignUpUserInfoState();
 }
-
 
 class _SignUpUserInfoState extends State<SignUpUserInfo> {
 
@@ -99,7 +99,7 @@ class _SignUpUserInfoState extends State<SignUpUserInfo> {
                 ),
                 Container(
                   margin: EdgeInsets.only(left: 16, right: 8, top: 8),
-                  child: TextField(decoration: InputDecoration(labelText: "ex) 19900101"),),
+                  child: BirthDatePicker()
                 ),
 
                 Container(
